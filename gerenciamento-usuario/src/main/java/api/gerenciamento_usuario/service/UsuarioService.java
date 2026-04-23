@@ -66,6 +66,19 @@ public class UsuarioService {
         }
         throw new IllegalArgumentException("Usuário não encontrado");
     }
+    public boolean atualizarSenha(String senhaAtual, String novaSenha, UsuarioDto usuarioDto) {
+
+        for (UsuarioEntity usuario : arraylist) {
+            if (usuario.getLogin().equals(usuarioDto.getLogin())) {
+                if (!usuario.getSenha().equals(senhaAtual)) {
+                    return false;
+                }
+                usuario.setSenha(novaSenha);
+                return true;
+            }
+        }
+        return false;
+    }
     public boolean atualizarUsuario(String cpf, UsuarioDto usuarioDto) {
 
         for (UsuarioEntity usuario : arraylist) {
