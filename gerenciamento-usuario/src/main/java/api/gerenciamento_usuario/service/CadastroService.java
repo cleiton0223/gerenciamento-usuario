@@ -24,5 +24,20 @@ public class CadastroService {
 
         categorias.add(novaCategoria);
     }
+    public List<CategoriaDto> listarCategoria() {
+
+        List<CategoriaDto> listaCategoriasDto = new ArrayList<>();
+
+        for (CategoriaEntity entidade : categorias) {
+            CategoriaDto dto = new CategoriaDto();
+
+            dto.setId(entidade.getId());
+            dto.setNome(entidade.getNome());
+
+            listaCategoriasDto.add(dto);
+        }
+
+        return listaCategoriasDto;
+    }
 
 }
