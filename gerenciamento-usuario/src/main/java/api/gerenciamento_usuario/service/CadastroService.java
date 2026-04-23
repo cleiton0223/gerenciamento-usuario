@@ -1,5 +1,6 @@
 package api.gerenciamento_usuario.service;
 import api.gerenciamento_usuario.dto.CategoriaDto;
+import api.gerenciamento_usuario.dto.ProdutoDto;
 import api.gerenciamento_usuario.entity.CategoriaEntity;
 import api.gerenciamento_usuario.entity.ProdutoEntity;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,25 @@ public class CadastroService {
         }
 
         return listaCategoriasDto;
+    }
+    public boolean cadastrarProduto(ProdutoDto produtoDto) {
+
+        for (CategoriaEntity categoria : categorias) {
+
+            if (categoria.getId().equals(produtoDto.getCategoriaId())) {
+
+                ProdutoEntity novoProduto = new ProdutoEntity();
+
+                novoProduto.setId(produtoDto.getId());
+                novoProduto.setNome(produtoDto.getNome());
+                novoProduto.setPreco(produtoDto.getPreco());
+                novoProduto.setCategoria(categoria);
+
+                produtos.add(novoProduto);
+                return true;
+            }
+        }
+        return false;
     }
 
 }
