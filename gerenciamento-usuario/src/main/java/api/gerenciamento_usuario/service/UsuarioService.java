@@ -71,6 +71,15 @@ public class UsuarioService {
             }
         }
         return false;
-    }g
+    }
+    public void removeUsuario(String cpf) {
 
+        for (UsuarioEntity usuario : arraylist) {
+            if (usuario.getCpf().equals(cpf)) {
+                arraylist.remove(usuario);
+                return;
+            }
+        }
+        throw new IllegalArgumentException("Usuário não encontrado");
+    }
 }
