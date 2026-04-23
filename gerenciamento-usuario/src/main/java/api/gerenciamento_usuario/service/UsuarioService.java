@@ -51,6 +51,21 @@ public class UsuarioService {
 
         return colaboradores;
     }
+    public RespostaUsuarioDto buscarUsuarioPorCpf(String cpf) {
+
+        for (UsuarioEntity usuario : arraylist) {
+            if (usuario.getCpf().equals(cpf)) {
+
+                RespostaUsuarioDto resposta = new RespostaUsuarioDto();
+                resposta.setCpf(usuario.getCpf());
+                resposta.setLogin(usuario.getLogin());
+                resposta.setNome(usuario.getNome());
+
+                return resposta;
+            }
+        }
+        throw new IllegalArgumentException("Usuário não encontrado");
+    }
     public boolean atualizarUsuario(String cpf, UsuarioDto usuarioDto) {
 
         for (UsuarioEntity usuario : arraylist) {
@@ -59,7 +74,6 @@ public class UsuarioService {
                 return false;
             }
         }
-
 
         for (UsuarioEntity usuario : arraylist) {
             if (usuario.getCpf().equals(cpf)) {
