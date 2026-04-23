@@ -51,5 +51,26 @@ public class UsuarioService {
 
         return colaboradores;
     }
+    public boolean atualizarUsuario(String cpf, UsuarioDto usuarioDto) {
+
+        for (UsuarioEntity usuario : arraylist) {
+            if (usuario.getLogin().equals(usuarioDto.getLogin()) &&
+                    !usuario.getCpf().equals(cpf)) {
+                return false;
+            }
+        }
+
+
+        for (UsuarioEntity usuario : arraylist) {
+            if (usuario.getCpf().equals(cpf)) {
+
+                usuario.setCpf(usuarioDto.getCpf());
+                usuario.setLogin(usuarioDto.getLogin());
+                usuario.setNome(usuarioDto.getNome());
+                return true;
+            }
+        }
+        return false;
+    }g
 
 }
