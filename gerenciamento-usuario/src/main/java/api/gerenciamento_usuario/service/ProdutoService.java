@@ -6,6 +6,9 @@ import api.gerenciamento_usuario.entity.ProdutoEntity;
 import api.gerenciamento_usuario.repository.CategoriaRepository;
 import api.gerenciamento_usuario.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -40,4 +43,19 @@ public class ProdutoService {
 
         return true;
     }
+    public List<ProdutoDto> listarProduto() {
+        List<ProdutoDto> produtos = new ArrayList<>();
+
+        for (ProdutoEntity lista : produtoRepository.findAll()) {
+            ProdutoDto dto = new ProdutoDto(lista);
+
+            if (lista.getCategoria() != null) {
+                dto.setCategoriaId(lista.getCategoria().getId());
+            }
+
+            produtos.add(dto);
+        }
+        return produtos;
+    }
+
 }
