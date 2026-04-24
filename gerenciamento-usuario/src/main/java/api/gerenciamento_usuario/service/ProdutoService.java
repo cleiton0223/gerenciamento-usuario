@@ -70,4 +70,25 @@ public class ProdutoService {
         }
         return produtos;
     }
+    public boolean atualizarprodutos(ProdutoDto produto) {
+
+        for (ProdutoEntity atualizar : produtoRepository.findAll()) {
+            if (atualizar.getId().equals(produto.getId())) {
+
+                atualizar.setNome(produto.getNome());
+                atualizar.setPreco(produto.getPreco());
+
+                Optional<CategoriaEntity> categoria = categoriaRepository.findById(produto.getCategoriaId());
+
+                if (categoria.isEmpty()) {
+                    return false;
+                }
+
+                atualizar.setCategoria(categoria.get());
+                produtoRepository.save(atualizar);
+                return true;
+            }
+        }
+        return false;
+    }
 }
