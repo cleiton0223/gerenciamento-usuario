@@ -71,11 +71,8 @@ public class CadastroService {
             dto.setNome(entidade.getNome());
             dto.setPreco(entidade.getPreco());
 
-
             listaProdutosDto.add(dto);
         }
         return listaProdutosDto;
     }
-}
-
 }
