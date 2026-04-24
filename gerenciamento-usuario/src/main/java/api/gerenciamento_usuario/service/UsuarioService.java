@@ -79,6 +79,19 @@ public class UsuarioService {
         }
         return false;
     }
+    public boolean autenticacao(String login, String senha) {
+
+        for (UsuarioEntity usuario : arraylist) {
+            if (usuario.getLogin().equals(login)) {
+                if (usuario.getSenha().equals(senha)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
     public boolean atualizarUsuario(String cpf, UsuarioDto usuarioDto) {
 
         for (UsuarioEntity usuario : arraylist) {
