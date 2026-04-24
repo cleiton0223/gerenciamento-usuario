@@ -59,5 +59,23 @@ public class CadastroService {
         }
         return false;
     }
+    public List<ProdutoDto> listarProduto() {
+
+        List<ProdutoDto> listaProdutosDto = new ArrayList<>();
+
+        for (ProdutoEntity entidade : produtos) {
+
+            ProdutoDto dto = new ProdutoDto();
+
+            dto.setId(entidade.getId());
+            dto.setNome(entidade.getNome());
+            dto.setPreco(entidade.getPreco());
+
+
+            listaProdutosDto.add(dto);
+        }
+        return listaProdutosDto;
+    }
+}
 
 }
