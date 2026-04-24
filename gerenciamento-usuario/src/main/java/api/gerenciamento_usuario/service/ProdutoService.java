@@ -57,5 +57,17 @@ public class ProdutoService {
         }
         return produtos;
     }
+    public List<ProdutoDto> listarCategoriaProduto(Long categoriaId) {
+        List<ProdutoDto> produtos = new ArrayList<>();
 
+        for (ProdutoEntity lista : produtoRepository.findAll()) {
+            if (lista.getCategoria() != null && lista.getCategoria().getId().equals(categoriaId)) {
+
+                ProdutoDto produto = new ProdutoDto(lista);
+
+                produtos.add(produto);
+            }
+        }
+        return produtos;
+    }
 }
